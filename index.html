@@ -3,302 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Missions & Giving Form - The David Assembly International</title>
-    <!-- Import Inter font from Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <title>TDA AI Online Assistant</title>
     <style>
-        body { 
-            font-family: 'Inter', sans-serif; 
-            line-height: 1.5; 
-            margin: 0; 
-            padding: 40px 20px; 
-            background-color: #f9fafb;
-            color: #1f2937;
+        :root {
+            --primary-color: #2563eb;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #0f172a;
+            --border-color: #cbd5e1;
         }
-
-        /* Full-page wrapper card */
-        .form-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 40px 50px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e5e7eb;
-            box-sizing: border-box;
-        }
-
-        /* Logo styling */
-        .logo-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .logo-container img {
-            max-width: 90px;
-            height: auto;
-            border-radius: 50%;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: #0056b3;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        .church-title {
-            font-size: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #d4af37;
-            margin-bottom: 5px;
-            text-align: center;
-        }
-
-        h2 {
-            margin-top: 0; 
-            margin-bottom: 8px;
-            font-size: 28px; 
-            font-family: 'Inter', sans-serif;
-            text-transform: uppercase;
-            color: #004a99;
-            text-align: center;
-        }
-
-        p {
-            margin-top: 0;
-            margin-bottom: 25px;
-            font-family: 'Inter', sans-serif;
-            color: #4b5563;
-            text-align: center;
-        }
-
-        label { 
-            display: block; 
-            margin-top: 16px; 
-            font-weight: 600; 
-            font-size: 14px;
-            font-family: 'Inter', sans-serif;
-        }
-
-        input, select, textarea { 
-            width: 100%; 
-            padding: 12px 14px; 
-            margin-top: 6px; 
-            border: 1px solid #d1d5db; 
-            border-radius: 6px; 
-            box-sizing: border-box; 
-            font-family: 'Inter', sans-serif;
-            font-size: 15px;
-            background-color: #fff;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #0056b3;
-            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
-        }
-
-        /* Checkbox styling adjustment */
-        .checkbox-container {
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
             display: flex;
-            align-items: flex-start;
-            margin-top: 20px;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-        .checkbox-container input {
-            width: 18px;
-            height: 18px;
-            margin-top: 2px;
-            margin-right: 12px;
-            flex-shrink: 0;
-            cursor: pointer;
-        }
-        .checkbox-container label {
-            margin-top: 0;
-            font-weight: normal;
-            cursor: pointer;
-        }
-        
-        /* Enlarged Submit Button Styling */
-        button[type="submit"] {
+        .chat-container {
             width: 100%;
-            margin-top: 25px;
-            padding: 16px 20px;
-            background-color: #0056b3;
+            max-width: 650px;
+            height: 85vh;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        .chat-header {
+            padding: 18px 20px;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-header h2 {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        .lang-select {
+            padding: 6px 12px;
+            border-radius: 8px;
+            border: none;
+            background: white;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            outline: none;
+            max-width: 180px;
+        }
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            background: #fdfdfd;
+        }
+        .message {
+            max-width: 82%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            line-height: 1.5;
+            font-size: 0.95rem;
+            word-wrap: break-word;
+        }
+        .user-message {
+            background: var(--primary-color);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 3px;
+        }
+        .ai-message {
+            background: #f1f5f9;
+            color: var(--text-color);
+            align-self: flex-start;
+            border-bottom-left-radius: 3px;
+            border: 1px solid #e2e8f0;
+        }
+        .chat-input-area {
+            padding: 16px;
+            background: white;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 10px;
+        }
+        .chat-input-area input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            outline: none;
+            font-size: 0.95rem;
+        }
+        .chat-input-area input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+        }
+        .chat-input-area button {
+            padding: 12px 22px;
+            background: var(--primary-color);
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
             font-weight: 600;
-            letter-spacing: 0.3px;
-            transition: background-color 0.2s ease;
+            transition: opacity 0.2s;
         }
-        button[type="submit"]:hover { 
-            background-color: #004494; 
-        }
-
-        /* Success Message Styling */
-        #success-message {
-            display: none;
-            background-color: #ecfdf5;
-            border: 1px solid #10b981;
-            color: #065f46;
-            padding: 30px;
-            border-radius: 6px;
-            text-align: center;
-            margin-top: 20px;
-            font-family: 'Inter', sans-serif;
+        .chat-input-area button:hover {
+            opacity: 0.9;
         }
     </style>
 </head>
 <body>
 
-    <div class="form-container">
-        <!-- Connected to your Google Sites Home Page link -->
-        <a href="https://sites.google.com/view/thedavidassemblyinternational/home" class="back-link">&larr; Back to Home</a>
-        
-        <!-- Church Logo Inserted Here -->
-        <div class="logo-container">
-            <img src="https://raw.githubusercontent.com/princeofedinburgh-bit/david-assembly-images/main/TDAI%20WHATSAPP%20LOGO.png" alt="The David Assembly International Logo">
-        </div>
-
-        <div class="church-title">The David Assembly International</div>
-        <h2>Missions & Giving Form</h2>
-        <p>Thank you for partnering with The David Assembly International through your generous support. Please fill out the form below.</p>
-
-        <form id="giving-form" action="https://formspree.io/f/xqpzeqkj" method="POST">
-            
-            <!-- Donation Amount -->
-            <label for="amount_preset">Donation Amount</label>
-            <select id="amount_preset" name="amount_preset" required>
-                <option value="" disabled selected>Select an amount...</option>
-                <option value="$25">$25</option>
-                <option value="$50">$50</option>
-                <option value="$100">$100</option>
-                <option value="Custom">Other Amount</option>
-            </select>
-
-            <label for="custom_amount">Custom Amount (if "Other Amount" selected above)</label>
-            <input type="text" id="custom_amount" name="custom_amount" placeholder="e.g., $150">
-
-            <!-- Donation Frequency -->
-            <label for="frequency">Donation Frequency</label>
-            <select id="frequency" name="frequency" required>
-                <option value="" disabled selected>Select frequency...</option>
-                <option value="One-time donation">One-time donation</option>
-                <option value="Weekly recurring">Recurring (Weekly)</option>
-                <option value="Monthly recurring">Recurring (Monthly)</option>
-                <option value="Annually recurring">Recurring (Annually)</option>
-            </select>
-
-            <!-- Designate Donation Purpose -->
-            <label for="purpose">Designate Donation Purpose</label>
-            <select id="purpose" name="purpose" required>
-                <option value="" disabled selected>Select purpose...</option>
-                <option value="Missions">Missions</option>
-                <option value="Humanitarian Aid">Humanitarian Aid</option>
-                <option value="Church Projects">Church Projects</option>
-                <option value="General Giving">General Giving</option>
-            </select>
-
-            <!-- Donor Information -->
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" required>
-
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="phone">Phone Number (optional)</label>
-            <input type="tel" id="phone" name="phone" placeholder="+234 800 000 0000" value="+234 800 000 0000">
-
-            <label for="address">Address (optional, for tax receipts)</label>
-            <input type="text" id="address" name="address" placeholder="Street address, city, country">
-
-            <!-- Payment Details Note / Preference -->
-            <label for="payment_method">Preferred Payment Method</label>
-            <select id="payment_method" name="payment_method" required>
-                <option value="" disabled selected>Select payment method...</option>
-                <option value="Credit/Debit Card">Credit/Debit Card</option>
-                <option value="PayPal">PayPal</option>
-                <option value="Bank Transfer">Bank Transfer</option>
-            </select>
-
-            <!-- Tax Receipt Preference -->
-            <div class="checkbox-container">
-                <input type="checkbox" id="tax_receipt" name="tax_receipt" value="Yes">
-                <label for="tax_receipt">I would like to receive a tax-deductible receipt (if applicable)</label>
-            </div>
-
-            <!-- Consent & Acknowledgment -->
-            <div class="checkbox-container">
-                <input type="checkbox" id="consent" name="consent" value="Agreed" required>
-                <label for="consent">I confirm my agreement with the terms and privacy policy. *</label>
-            </div>
-
-            <button type="submit" id="submit-btn">Give Today</button>
-        </form>
-
-        <!-- Hidden success notification box -->
-        <div id="success-message">
-            <h3>Thank You for Your Generosity!</h3>
-            <p>Your giving submission has been received successfully. We appreciate your partnership in our mission.</p>
-        </div>
+<div class="chat-container">
+    <div class="chat-header">
+        <h2>TDA AI Online Assistant</h2>
+        <select id="languageSelect" class="lang-select">
+            <option value="English">English</option>
+            <option value="Spanish">Español</option>
+            <option value="French">Français</option>
+            <option value="Arabic">العربية</option>
+            <option value="Mandarin">中文</option>
+            <option value="Hindi">हिन्दी</option>
+            <option value="Portuguese">Português</option>
+            <option value="Russian">Русский</option>
+            <option value="German">Deutsch</option>
+            <option value="Japanese">日本語</option>
+            <option value="Swahili">Kiswahili</option>
+            <option value="Italian">Italiano</option>
+            <!-- Newly requested additions -->
+            <option value="Hebrew">עברית (Hebrew)</option>
+            <option value="Korean">한국어 (Korean)</option>
+            <option value="Persian">فارسی (Persian)</option>
+            <option value="Vietnamese">Tiếng Việt (Vietnamese)</option>
+            <option value="Filipino">Filipino</option>
+            <option value="Greek">Ελληνικά (Greek)</option>
+            <option value="Turkish">Türkçe (Turkish)</option>
+            <option value="Urdu">اردو (Urdu / Pakistan)</option>
+            <option value="Tigrinya">ትግርኛ (Tigrinya / Eritrea)</option>
+            <option value="Somali">Soomaaliga (Somali)</option>
+        </select>
     </div>
+    
+    <div class="chat-messages" id="chatMessages">
+        <div class="message ai-message">Hello! I am TDA AI. Ask me anything, and I will source information live from the web and answer you in your preferred language.</div>
+    </div>
+    
+    <div class="chat-input-area">
+        <input type="text" id="userInput" placeholder="Ask a live question..." autocomplete="off">
+        <button id="sendBtn">Send</button>
+    </div>
+</div>
 
-    <script>
-        var form = document.getElementById("giving-form");
+<script>
+    const chatMessages = document.getElementById('chatMessages');
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const languageSelect = document.getElementById('languageSelect');
+
+    const API_ENDPOINT = '/api/chat'; 
+
+    async function handleUserQuery() {
+        const text = userInput.value.trim();
+        const selectedLang = languageSelect.value;
+        if (!text) return;
+
+        appendMessage(text, 'user-message');
+        userInput.value = '';
         
-        async function handleSubmit(event) {
-            event.preventDefault();
-            var status = document.getElementById("submit-btn");
-            var data = new FormData(event.target);
-            
-            status.textContent = "Processing...";
-            status.disabled = true;
+        const loadingId = appendMessage('Searching the web and translating...', 'ai-message');
 
-            fetch(event.target.action, {
-                method: form.method,
-                body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    form.style.display = "none";
-                    document.getElementById("success-message").style.display = "block";
-                } else {
-                    response.json().then(data => {
-                        if (Object.hasOwn(data, 'errors')) {
-                            alert(data["errors"].map(error => error["message"]).join(", "));
-                        } else {
-                            alert("Oops! There was a problem processing your giving form.");
-                        }
-                    })
-                    status.textContent = "Give Today";
-                    status.disabled = false;
-                }
-            }).catch(error => {
-                alert("Oops! There was a problem processing your giving form.");
-                status.textContent = "Give Today";
-                status.disabled = false;
+        try {
+            const response = await fetch(API_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    prompt: text, 
+                    language: selectedLang 
+                })
             });
+
+            const data = await response.json();
+            removeMessage(loadingId);
+            
+            if(data.reply) {
+                appendMessage(data.reply, 'ai-message');
+            } else {
+                appendMessage('Sorry, received an empty response from TDA AI server.', 'ai-message');
+            }
+
+        } catch (error) {
+            removeMessage(loadingId);
+            appendMessage('Error: Unable to connect to online services.', 'ai-message');
         }
-        
-        form.addEventListener("submit", handleSubmit);
-    </script>
+    }
+
+    function appendMessage(text, className) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `message ${className}`;
+        msgDiv.textContent = text;
+        const id = 'msg_' + Date.now() + Math.random();
+        msgDiv.id = id;
+        chatMessages.appendChild(msgDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        return id;
+    }
+
+    function removeMessage(id) {
+        const el = document.getElementById(id);
+        if (el) el.remove();
+    }
+
+    sendBtn.addEventListener('click', handleUserQuery);
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleUserQuery();
+    });
+</script>
 
 </body>
 </html>
